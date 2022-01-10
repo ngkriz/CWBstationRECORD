@@ -52,7 +52,7 @@ Link = str(input("Enter station link without the Year at the end. Sample: https:
 import requests  
 obsdata={"Date":[],"Temp":[],"Tmax":[]}
 
-for Year in range (1996,1997):
+for Year in range (1995,2022):
     Y = str(Year)
     url = Link + Y
     data = requests.get(url)
