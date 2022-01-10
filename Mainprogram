@@ -56,6 +56,7 @@ for Year in range (1995,2022):
     Y = str(Year)
     url = Link + Y
     data = requests.get(url)
+    print('Processing year -' + Y)
     obsfinder()
 
 
