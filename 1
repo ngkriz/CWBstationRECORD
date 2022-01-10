@@ -8,15 +8,27 @@ def obsfinder():
     messtext=data.text
     observations = messtext.split('<tr class="second_tr">')[1].lstrip().split('</tbody>')[0]
     
+    for i in range (1,13):
+        selectmonth = observations.split('<td nowrap>')[i].lstrip().split('</tr>')[0]
+        
+        print (selectmonth)
+        
+       ###insert here
+        extractdate = selectmonth.split('<td nowrap>')[0].lstrip().split('</td>')[0]
+        extractTemp = selectmonth.split('<td>')[7].lstrip().split('&nbsp;</td>')[0]
+        extractTmax = selectmonth.split('<td>')[8].lstrip().split('&nbsp;</td>')[0]
+        
+
+ 
     
-    extractdate = observations.split('<td nowrap>')[1].lstrip().split('</td>')[0]
-    extractTemp = observations.split('<td>')[7].lstrip().split('</td>')[0]
-    extractTmax = observations.split('<td>')[8].lstrip().split('</td>')[0]
     
-    print(observations)
-    print(extractdate)
-    print(extractTemp)
-    print(extractTmax)    
+        obsdata["Date"].append('1995'+ extractdate)
+        obsdata["Temp"].append(extractTemp)
+        obsdata["Tmax"].append(extractTmax)
+
+    
+    print(obsdata)
+
 
 
 ## end of functions
@@ -41,9 +53,15 @@ import requests
 for Year in range (1997,2022):
     Y = str(Year)
     url = Link + Y
-    print (url)
+## deleted "print (url)" 
     
-data = requests.get(url)
+    
+##change to "url" when live
+
+URLtest = 'https://e-service.cwb.gov.tw/HistoryDataQuery/YearDataController.do?command=viewMain&station=466920&stname=%25E8%2587%25BA%25E5%258C%2597&datepicker=1995'
+data = requests.get(URLtest)
+
+obsdata={"Date":[],"Temp":[],"Tmax":[]}
 
 obsfinder()
 
