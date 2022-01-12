@@ -46,7 +46,7 @@ def obsfinder():
 
 ## Start the execution
 
-# 1.input the link from CWB eg: https://e-service.cwb.gov.tw/HistoryDataQuery/YearDataController.do?command=viewMain&station=466920&stname=%25E8%2587%25BA%25E5%258C%2597&datepicker=1997
+# 1.input the link from CWB eg: https://e-service.cwb.gov.tw/HistoryDataQuery/
 Link = str(input("Enter station link without the Year at the end. Sample: https://e-service.cwb.gov.tw/HistoryDataQuery/YearDataController.do?command=viewMain&station=466920&stname=%25E8%2587%25BA%25E5%258C%2597&datepicker="))
 
 import requests  
