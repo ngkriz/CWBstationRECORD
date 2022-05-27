@@ -19,7 +19,10 @@ def obsfinder():
         extractdate = selectmonth.split('<td nowrap>')[0].lstrip().split('</td>')[0]
         extractTemp = selectmonth.split('<td>')[7].lstrip().split('&nbsp;</td>')[0]
         extractTmax = selectmonth.split('<td>')[8].lstrip().split('&nbsp;</td>')[0]
-        
+        extractPrecip = selectmonth.split('<td>')[18].lstrip().split('&nbsp;</td>')[0]
+        extractPrecipHour = selectmonth.split('<td>')[19].lstrip().split('&nbsp;</td>')[0]
+        extractPrecipMax10 = selectmonth.split('<td>')[21].lstrip().split('&nbsp;</td>')[0]
+
 
  
     
@@ -27,7 +30,9 @@ def obsfinder():
         obsdata["Date"].append(Y+ extractdate)
         obsdata["Temp"].append(extractTemp)
         obsdata["Tmax"].append(extractTmax)
-
+        obsdata["Precip"].append(extractPrecip)
+        obsdata["PrecipHour"].append(extractPrecipHour)
+        obsdata["PrecipHour"].append(extractPrecipMax10)
     
 
 
@@ -50,13 +55,13 @@ def obsfinder():
 Link = str(input("Enter station link without the Year at the end. Sample: https://e-service.cwb.gov.tw/HistoryDataQuery/YearDataController.do?command=viewMain&station=466920&stname=%25E8%2587%25BA%25E5%258C%2597&datepicker="))
 
 import requests  
-obsdata={"Date":[],"Temp":[],"Tmax":[]}
+obsdata={"Date":[],"Temp":[],"Tmax":[],"Precip":[],"PrecipHour":[],"PrecipMax10":[]}
 
-for Year in range (1995,2022):
+for Year in range (2020,2022):
     Y = str(Year)
-    url = Link + Y
+    url = Link + Y + '&altitude=607.1m'
     data = requests.get(url)
-    print('Processing year -' + Y)
+    print('Processing year -' + Y)    
     obsfinder()
 
 
@@ -107,4 +112,3 @@ def createlink():
 
 
 # Show the download links
-createlink()
